@@ -9,35 +9,106 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import org.apache.commons.lang.StringUtils;
+import org.example.relevance.trilogy.demo.beans.NewsDocument;
+import org.hippoecm.hst.content.beans.query.HstQuery;
+import org.hippoecm.hst.content.beans.query.HstQueryResult;
+import org.hippoecm.hst.content.beans.query.exceptions.QueryException;
+import org.hippoecm.hst.content.beans.query.filter.Filter;
+import org.hippoecm.hst.core.parameters.ParametersInfo;
+import org.hippoecm.hst.core.parameters.ParametersInfoProvider;
+import org.onehippo.cms7.essentials.components.paging.DefaultPagination;
+import org.onehippo.cms7.essentials.components.paging.IterablePagination;
 import org.onehippo.cms7.essentials.components.paging.Pageable;
 import org.onehippo.cms7.essentials.components.rest.BaseRestResource;
 import org.onehippo.cms7.essentials.components.rest.ctx.DefaultRestContext;
-import org.example.relevance.trilogy.demo.beans.NewsDocument;
+import org.onehippo.cms7.essentials.components.rest.ctx.RestContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * @version "$Id$"
  */
 
-@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_FORM_URLENCODED})
+@Produces({ MediaType.APPLICATION_JSON })
+@Consumes({ MediaType.APPLICATION_JSON })
 @Path("/NewsDocument/")
+@Api(value = "NewsDocument")
+@ParametersInfo(type=NewsDocumentResourceInfo.class)
 public class NewsDocumentResource extends BaseRestResource {
+
+    private static Logger log = LoggerFactory.getLogger(NewsDocumentResource.class);
 
     @GET
     @Path("/")
-    public Pageable<NewsDocument> index(@Context HttpServletRequest request) {
-        return findBeans(new DefaultRestContext(this, request), NewsDocument.class);
+    @ApiOperation(value = "Finds all news content pages", response = Pageable.class)
+    public Pageable<NewsDocument> index(
+            @Context HttpServletRequest request,
+            @Context ParametersInfoProvider paramsInfoProvider) {
+        final NewsDocumentResourceInfo paramsInfo = paramsInfoProvider.getParametersInfo();
+
+        try {
+            final RestContext context = new DefaultRestContext(this, request);
+            final HstQuery hstQuery = createQuery(context, NewsDocument.class, Subtypes.INCLUDE);
+
+            String [] tags = StringUtils.split(paramsInfo.getTagsCSV(), "\t\r\n, ");
+
+            if (tags != null && tags.length > 0) {
+                Filter filter = hstQuery.createFilter();
+                for (String tag : tags) {
+                    filter.addContains("hippoaddonapichanneldemo:tags", tag);
+                }
+                hstQuery.setFilter(filter);
+            }
+
+            String [] sortFields = StringUtils.split(paramsInfo.getSortFields(), "\t\r\n, ");
+
+            if (sortFields != null) {
+                for (String sortField : sortFields) {
+                    if (sortField.startsWith("-")) {
+                        hstQuery.addOrderByDescending(sortField.substring(1));
+                    } else {
+                        hstQuery.addOrderByAscending(sortField);
+                    }
+                }
+            }
+
+            final HstQueryResult execute = hstQuery.execute();
+            return new IterablePagination<>(
+                    execute.getHippoBeans(),
+                    execute.getTotalSize(),
+                    context.getPageSize(),
+                    context.getPage());
+        } catch (QueryException e) {
+            log.error("Error finding beans", e);
+        }
+
+        return DefaultPagination.emptyCollection();
     }
 
     @GET
     @Path("/page/{page}")
-    public Pageable<NewsDocument> page(@Context HttpServletRequest request, @PathParam("page") int page) {
+    @ApiOperation(value = "Finds a specific news content page", response = Pageable.class)
+    public Pageable<NewsDocument> page(
+            @Context HttpServletRequest request,
+            @Context ParametersInfoProvider paramsInfoProvider,
+            @PathParam("page") int page) {
+        final NewsDocumentResourceInfo paramsInfo = paramsInfoProvider.getParametersInfo();
         return findBeans(new DefaultRestContext(this, request, page, DefaultRestContext.PAGE_SIZE), NewsDocument.class);
     }
 
     @GET
     @Path("/page/{page}/{pageSize}")
-    public Pageable<NewsDocument> pageForSize(@Context HttpServletRequest request, @PathParam("page") int page, @PathParam("pageSize") int pageSize) {
+    @ApiOperation(value = "Finds a specific news content page with specifying the page size", response = Pageable.class)
+    public Pageable<NewsDocument> pageForSize(
+            @Context HttpServletRequest request,
+            @Context ParametersInfoProvider paramsInfoProvider,
+            @PathParam("page") int page,
+            @PathParam("pageSize") int pageSize) {
+        final NewsDocumentResourceInfo paramsInfo = paramsInfoProvider.getParametersInfo();
         return findBeans(new DefaultRestContext(this, request, page, pageSize), NewsDocument.class);
     }
 
