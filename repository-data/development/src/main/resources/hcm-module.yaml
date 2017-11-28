@@ -1,0 +1,7 @@
+group: 
+  name: relevance-trilogy-demo
+  after: hippo-cms
+project: relevance-trilogy-demo
+module: 
+  name: relevance-trilogy-demo-repository-data-development
+  after: relevance-trilogy-demo-repository-data-application

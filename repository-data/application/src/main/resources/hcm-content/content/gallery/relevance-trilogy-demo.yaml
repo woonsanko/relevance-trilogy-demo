@@ -1,0 +1,7 @@
+/content/gallery/relevancetrilogydemo:
+  jcr:primaryType: hippogallery:stdImageGallery
+  jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+  jcr:uuid: d9a213d8-486c-40eb-95ba-a1b5b9dabdcf
+  hippo:name: Relevance Trilogy Demo
+  hippostd:foldertype: [new-image-folder]
+  hippostd:gallerytype: ['hippogallery:imageset']

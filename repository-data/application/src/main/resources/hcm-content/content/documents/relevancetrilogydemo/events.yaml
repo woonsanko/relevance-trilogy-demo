@@ -1,0 +1,145 @@
+/content/documents/relevancetrilogydemo/events:
+  jcr:primaryType: hippostd:folder
+  jcr:mixinTypes: ['hippotranslation:translated', 'mix:referenceable']
+  jcr:uuid: 538755ba-dc9b-4124-9192-a3cc70b2b8cf
+  hippostd:foldertype: [new-events-document, new-events-folder]
+  hippotranslation:id: 151580eb-6244-4c9a-a182-d8622f68af7f
+  hippotranslation:locale: en
+  /2017:
+    jcr:primaryType: hippostd:folder
+    jcr:mixinTypes: ['hippotranslation:translated', 'mix:referenceable']
+    jcr:uuid: bb54697f-e46d-452b-857b-fa0edf715424
+    hippostd:foldertype: [new-events-document, new-events-folder]
+    hippotranslation:id: a352bd65-5d1c-4885-981e-dd699d023e52
+    hippotranslation:locale: en
+    /11:
+      jcr:primaryType: hippostd:folder
+      jcr:mixinTypes: ['hippotranslation:translated', 'mix:referenceable']
+      jcr:uuid: 23606ff8-1c83-4186-b232-e859d9e26e43
+      hippostd:foldertype: [new-events-document, new-events-folder]
+      hippotranslation:id: ddb3f820-81a6-43fd-b099-47c2085d1d31
+      hippotranslation:locale: en
+      /breakfast:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+        jcr:uuid: b8f5eb45-7200-452a-b26e-3118a0dc60b8
+        hippo:name: Breakfast
+        /breakfast:
+          jcr:primaryType: relevancetrilogydemo:eventsdocument
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 94efc8b4-afc3-48ed-a4e4-5479b9385f89
+          hippo:availability: [live, preview]
+          hippostd:holder: admin
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2013-11-12T11:00:00+01:00
+          hippostdpubwf:lastModificationDate: 2013-11-12T11:11:00+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2013-11-12T12:16:00+01:00
+          hippotranslation:id: 31d64f99-0519-49fa-be27-57572248ce83
+          hippotranslation:locale: en
+          relevancetrilogydemo:date: 2013-11-12T08:00:00+01:00
+          relevancetrilogydemo:documenttype: event
+          relevancetrilogydemo:enddate: 2018-11-28T00:43:00-05:00
+          relevancetrilogydemo:introduction: Start the day with a nice breakfast.
+          relevancetrilogydemo:location: Room 101
+          relevancetrilogydemo:title: Breakfast
+          /relevancetrilogydemo:content:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <html>
+                        <body>
+
+                        <p>Breakfast is served starting from 8:00 until 9:30.</p>
+
+                        </body>
+                        </html>
+          /relevancetrilogydemo:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: c8f03498-56eb-46c9-83b2-cf014f2e03d7
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+      /introduction-speech:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+        jcr:uuid: 18e36c35-429d-4fee-b76e-eeabcbfc08bb
+        hippo:name: Introduction speech
+        /introduction-speech:
+          jcr:primaryType: relevancetrilogydemo:eventsdocument
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 646788a7-7e43-4abd-bb69-09726fbba398
+          hippo:availability: [live, preview]
+          hippostd:holder: admin
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2013-11-12T11:02:00+01:00
+          hippostdpubwf:lastModificationDate: 2013-11-12T11:16:00+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2013-11-12T12:16:00+01:00
+          hippotranslation:id: 50107d6a-5144-4c0d-b7b5-58e6989b5f6d
+          hippotranslation:locale: en
+          relevancetrilogydemo:date: 2013-11-12T10:00:00+01:00
+          relevancetrilogydemo:documenttype: event
+          relevancetrilogydemo:enddate: 2018-11-28T00:43:00-05:00
+          relevancetrilogydemo:introduction: After breakfast there will be an introductory
+            speech.
+          relevancetrilogydemo:location: Room 400
+          relevancetrilogydemo:title: Introduction speech
+          /relevancetrilogydemo:content:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <html>
+                        <body>
+
+                        <p>Speech will be about the workshop.</p>
+
+                        </body>
+                        </html>
+          /relevancetrilogydemo:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 9f32434e-84e3-4150-a6f2-d89a67be2fb1
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+      /workshop:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 7a29ec60-2689-48b2-aca2-49696c5c23eb
+        /workshop:
+          jcr:primaryType: relevancetrilogydemo:eventsdocument
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: c2fd3c5c-1edc-4c0c-80ef-3340daa55a24
+          hippo:availability: [live, preview]
+          hippostd:holder: admin
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2013-11-12T11:16:00+01:00
+          hippostdpubwf:lastModificationDate: 2013-11-12T11:18:00+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2013-11-12T12:16:00+01:00
+          hippotranslation:id: 250ed36f-325c-47f8-aa1d-7a63ae9ffc37
+          hippotranslation:locale: en
+          relevancetrilogydemo:date: 2013-11-12T13:00:00+01:00
+          relevancetrilogydemo:documenttype: event
+          relevancetrilogydemo:enddate: 2018-11-28T00:43:00-05:00
+          relevancetrilogydemo:introduction: Workshop starts at 1:00
+          relevancetrilogydemo:location: Room 600
+          relevancetrilogydemo:title: Workshop
+          /relevancetrilogydemo:content:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <html>
+                        <body>
+                        <strong>Everybody </strong>
+                        <p>can join the workshop and start practicing what they learned during the last
+                        week.</p>
+
+                        </body>
+                        </html>
+          /relevancetrilogydemo:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: d035387b-f9ce-49f6-bcb0-9ab6915a2d5f
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []

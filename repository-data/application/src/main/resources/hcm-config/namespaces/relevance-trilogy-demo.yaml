@@ -1,0 +1,6 @@
+definitions:
+  config:
+    /hippo:namespaces/relevancetrilogydemo:
+      jcr:primaryType: hipposysedit:namespace
+      jcr:mixinTypes: ['mix:referenceable']
+      jcr:uuid: 3b7ac83f-53a4-4b33-a4b2-f157470d8033

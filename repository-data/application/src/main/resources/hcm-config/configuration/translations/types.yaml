@@ -1,0 +1,90 @@
+definitions:
+  config:
+    /hippo:configuration/hippo:translations/hippo:types/relevancetrilogydemo:eventsdocument:
+      jcr:primaryType: hipposys:resourcebundles
+      /en:
+        jcr:primaryType: hipposys:resourcebundle
+        jcr:name: Event
+        relevancetrilogydemo:content: Content
+        relevancetrilogydemo:date: Start date
+        relevancetrilogydemo:enddate: End date
+        relevancetrilogydemo:image: Image
+        relevancetrilogydemo:introduction: Introduction
+        relevancetrilogydemo:location: Location
+        relevancetrilogydemo:title: Title
+      /nl:
+        jcr:primaryType: hipposys:resourcebundle
+        jcr:name: Evenement
+        relevancetrilogydemo:content: Inhoud
+        relevancetrilogydemo:date: Startdatum
+        relevancetrilogydemo:enddate: Einddatum
+        relevancetrilogydemo:image: Afbeelding
+        relevancetrilogydemo:introduction: Introductie
+        relevancetrilogydemo:location: Locatie
+        relevancetrilogydemo:title: Titel
+      /fr:
+        jcr:primaryType: hipposys:resourcebundle
+        jcr:name: Événement
+        relevancetrilogydemo:content: Contenu
+        relevancetrilogydemo:date: Date de début
+        relevancetrilogydemo:enddate: Date de fin
+        relevancetrilogydemo:image: Image
+        relevancetrilogydemo:introduction: Introduction
+        relevancetrilogydemo:location: Lieu
+        relevancetrilogydemo:title: Titre
+      /de:
+        jcr:primaryType: hipposys:resourcebundle
+        jcr:name: Event
+        relevancetrilogydemo:content: Inhalt
+        relevancetrilogydemo:date: Startdatum
+        relevancetrilogydemo:enddate: Enddatum
+        relevancetrilogydemo:image: Abbildung
+        relevancetrilogydemo:introduction: Einführung
+        relevancetrilogydemo:location: Standort
+        relevancetrilogydemo:title: Titel
+    /hippo:configuration/hippo:translations/hippo:types/relevancetrilogydemo:newsdocument:
+      jcr:primaryType: hipposys:resourcebundles
+      /en:
+        jcr:primaryType: hipposys:resourcebundle
+        jcr:name: News Item
+        relevancetrilogydemo:author: Author
+        relevancetrilogydemo:content: Content
+        relevancetrilogydemo:date: Date
+        relevancetrilogydemo:image: Image
+        relevancetrilogydemo:introduction: Introduction
+        relevancetrilogydemo:location: Location
+        relevancetrilogydemo:source: Source
+        relevancetrilogydemo:title: Title
+      /nl:
+        jcr:primaryType: hipposys:resourcebundle
+        jcr:name: Nieuwsbericht
+        relevancetrilogydemo:author: Auteur
+        relevancetrilogydemo:content: Inhoud
+        relevancetrilogydemo:date: Datum
+        relevancetrilogydemo:image: Afbeelding
+        relevancetrilogydemo:introduction: Introductie
+        relevancetrilogydemo:location: Locatie
+        relevancetrilogydemo:source: Bron
+        relevancetrilogydemo:title: Titel
+      /de:
+        jcr:primaryType: hipposys:resourcebundle
+        jcr:name: News
+        relevancetrilogydemo:author: Verfasser
+        relevancetrilogydemo:content: Inhalt
+        relevancetrilogydemo:date: Datum
+        relevancetrilogydemo:image: Abbildung
+        relevancetrilogydemo:introduction: Einführung
+        relevancetrilogydemo:location: Standort
+        relevancetrilogydemo:source: Quelle
+        relevancetrilogydemo:title: Titel
+      /fr:
+        jcr:primaryType: hipposys:resourcebundle
+        jcr:name: Message d'info
+        relevancetrilogydemo:author: Auteur
+        relevancetrilogydemo:content: Contenu
+        relevancetrilogydemo:date: Date
+        relevancetrilogydemo:image: Image
+        relevancetrilogydemo:introduction: Introduction
+        relevancetrilogydemo:location: Lieu
+        relevancetrilogydemo:source: Source
+        relevancetrilogydemo:title: Titre
