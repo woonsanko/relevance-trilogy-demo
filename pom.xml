@@ -3,8 +3,8 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.onehippo.cms7</groupId>
-    <artifactId>hippo-cms7-release</artifactId>
+    <groupId>com.onehippo.cms7</groupId>
+    <artifactId>hippo-cms7-enterprise-release</artifactId>
     <version>12.1.0-SNAPSHOT</version>
   </parent>
 
@@ -63,6 +63,13 @@
     <!--***START temporary override of versions*** -->
     <!-- ***END temporary override of versions*** -->
 
+    <hippo-addon-api-agent-channel.version>1.0.0-SNAPSHOT</hippo-addon-api-agent-channel.version>
+    <webjars-servlet-2.x.version>1.5</webjars-servlet-2.x.version>
+    <webjars-swagger-ui.version>2.2.8</webjars-swagger-ui.version>
+
+    <elasticsearch.version>5.4.1</elasticsearch.version>
+    <maven.plugin.elasticsearch.version>5.7</maven.plugin.elasticsearch.version>
+
     <essentials.version>4.1.0-SNAPSHOT</essentials.version>
     <jsp-api.version>2.2</jsp-api.version>
     <taglibs.version>1.2.5</taglibs.version>
@@ -82,10 +89,32 @@
       <name>Hippo maven 2 repository.</name>
       <url>https://maven.onehippo.com/maven2/</url>
     </repository>
+    <repository>
+      <id>hippo-maven2-enterprise</id>
+      <name>Hippo Maven 2 Enterprise</name>
+      <url>https://maven.onehippo.com/maven2-enterprise/</url>
+      <releases>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+    </repository>
   </repositories>
 
   <dependencyManagement>
+
     <dependencies>
+
+      <dependency>
+        <groupId>com.onehippo.cms7</groupId>
+        <artifactId>hippo-addon-api-agent-channel-delegates</artifactId>
+        <version>${hippo-addon-api-agent-channel.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.onehippo.cms7</groupId>
+        <artifactId>hippo-addon-api-agent-channel-repository</artifactId>
+        <version>${hippo-addon-api-agent-channel.version}</version>
+      </dependency>
+
       <dependency>
         <groupId>org.onehippo.cms7</groupId>
         <artifactId>hippo-essentials-plugin-sdk-api</artifactId>
@@ -132,6 +161,18 @@
         <groupId>org.freemarker</groupId>
         <artifactId>freemarker</artifactId>
         <version>${freemarker.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.webjars</groupId>
+        <artifactId>webjars-servlet-2.x</artifactId>
+        <version>${webjars-servlet-2.x.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.webjars</groupId>
+        <artifactId>swagger-ui</artifactId>
+        <version>${webjars-swagger-ui.version}</version>
       </dependency>
 
       <dependency>
@@ -217,6 +258,7 @@
         <module>cms</module>
         <module>site</module>
         <module>essentials</module>
+        <module>api-docs</module>
       </modules>
     </profile>
 
@@ -225,9 +267,53 @@
       <properties>
         <!--Already defined in hippo-cms-project POM. Override here for project, if necessary-->
         <!--<repo.bootstrap>true</repo.bootstrap>-->
+
+        <targeting.bootstrap>false</targeting.bootstrap>
+        <targeting.truncate>true</targeting.truncate>
+        <es.path>${project.build.directory}/storage</es.path>
+        <sql.driver>org.h2.Driver</sql.driver>
+        <sql.username>sa</sql.username>
+        <sql.password />
+        <sql.url>jdbc:h2:${repo.path}/targeting/targeting;AUTO_SERVER=TRUE</sql.url>
+        <es.httpPort>9200</es.httpPort>
+        <es.tcpPort>9300</es.tcpPort>
+        <es.skip.start>false</es.skip.start>
+
       </properties>
       <build>
         <plugins>
+
+          <plugin>
+            <groupId>com.github.alexcojocaru</groupId>
+            <artifactId>elasticsearch-maven-plugin</artifactId>
+            <version>${maven.plugin.elasticsearch.version}</version>
+            <configuration>
+              <clusterName>demoElasticSearchCluster</clusterName>
+              <httpPort>${es.httpPort}</httpPort>
+              <transportPort>${es.tcpPort}</transportPort>
+              <version>${elasticsearch.version}</version>
+              <keepExistingData>true</keepExistingData>
+              <timeout>60</timeout>
+              <skip>${es.skip.start}</skip>
+            </configuration>
+            <executions>
+              <execution>
+                <id>start-elasticsearch</id>
+                <phase>validate</phase>
+                <goals>
+                  <goal>runforked</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>stop-elasticsearch</id>
+                <phase>post-integration-test</phase>
+                <goals>
+                  <goal>stop</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+
           <plugin>
             <groupId>org.codehaus.cargo</groupId>
             <artifactId>cargo-maven2-plugin</artifactId>
@@ -272,6 +358,13 @@
                   <type>war</type>
                   <properties>
                     <context>/essentials</context>
+                  </properties>
+                </deployable>
+                <deployable>
+                  <location>${project.basedir}/api-docs/target/api-docs.war</location>
+                  <type>war</type>
+                  <properties>
+                    <context>/api-docs</context>
                   </properties>
                 </deployable>
               </deployables>
