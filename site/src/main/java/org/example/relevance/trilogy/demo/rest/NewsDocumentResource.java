@@ -59,7 +59,7 @@ public class NewsDocumentResource extends BaseRestResource {
             if (tags != null && tags.length > 0) {
                 Filter filter = hstQuery.createFilter();
                 for (String tag : tags) {
-                    filter.addContains("hippoaddonapichanneldemo:tags", tag);
+                    filter.addContains("relevancetrilogydemo:tags", tag);
                 }
                 hstQuery.setFilter(filter);
             }
