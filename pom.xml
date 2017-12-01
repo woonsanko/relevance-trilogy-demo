@@ -5,7 +5,7 @@
   <parent>
     <groupId>com.onehippo.cms7</groupId>
     <artifactId>hippo-cms7-enterprise-release</artifactId>
-    <version>12.1.0-SNAPSHOT</version>
+    <version>12.1.0</version>
   </parent>
 
   <name>Relevance Trilogy Demo</name>
@@ -63,7 +63,7 @@
     <!--***START temporary override of versions*** -->
     <!-- ***END temporary override of versions*** -->
 
-    <hippo-addon-api-agent-channel.version>1.0.0-SNAPSHOT</hippo-addon-api-agent-channel.version>
+    <hippo-addon-api-agent-channel.version>1.0.0</hippo-addon-api-agent-channel.version>
     <webjars-servlet-2.x.version>1.5</webjars-servlet-2.x.version>
     <webjars-swagger-ui.version>2.2.8</webjars-swagger-ui.version>
 
