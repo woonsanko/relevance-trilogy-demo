@@ -83,6 +83,9 @@
     <!-- project logging -->
     <Logger name="org.example.relevance.trilogy.demo" level="info"/>
 
+    <Logger name="org.apache.commons.jexl3" level="debug"/>
+    <Logger name="com.onehippo.cms7.inference.engine" level="debug"/>
+
     <Root level="warn">
       <AppenderRef ref="site"/>
       <AppenderRef ref="cms"/>
