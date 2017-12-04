@@ -17,7 +17,7 @@
       hippostd:state: draft
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2017-12-04T23:02:45.520+01:00
-      hippostdpubwf:lastModificationDate: 2017-12-04T23:02:45.521+01:00
+      hippostdpubwf:lastModificationDate: 2017-12-04T23:28:20.315+01:00
       hippostdpubwf:lastModifiedBy: admin
       hippotranslation:id: 1d758432-3596-4a70-a70d-b9e492f6848b
       hippotranslation:locale: document-type-locale
@@ -37,28 +37,28 @@
         \ {\r\n    if (paramName.startsWith(\"goal.uri.mapping.\")) {\r\n        var\
         \ paramValue = $.getParameter(paramName);\r\n        var pair = string:split(paramValue,\
         \ \" :\"); var type = arrays:get(pair, 0); var uri = arrays:get(pair, 1);\r\
-        \n        if (requestURI.contains(uri) or referer.contains(uri)) {\r\n   \
-        \         interestType = type;\r\n            break;\r\n        }\r\n    }\r\
-        \n}\r\n\r\n// If the interestType goal value was determined,\r\n// and if\
-        \ this is invoked in the relevance collector context,\r\n// you can store\
-        \ extra goal data values map ($.collectorContext.extraData)\r\n// and increment\
-        \ the counter for the goal value to store it back to the targeting data.\r\
-        \nif ($.hasCollectorContext()) {\r\n    // Sets the request level goal value\
-        \ before determining the max counter valued type by counterMap.\r\n    $.collectorContext.setRequestLevelGoalValue(interestType);\r\
-        \n    $.logger.debug(\"requestLevelGoalValue: {}\", interestType);\r\n   \
-        \ // Get the counter map for each interest type goal value.\r\n    var counterMap\
-        \ = $.collectorContext.extraData.get(\"counterMap\");\r\n    // If the counter\
-        \ map doesn't exist yet, create a new one and put it back to extra data map.\r\
-        \n    if (counterMap == null) {\r\n        counterMap = counter:newMap();\r\
-        \n        $.collectorContext.extraData.put(\"counterMap\", counterMap);\r\n\
-        \    }\r\n    interestType = counter:incrementAndGetMaxKey(counterMap, interestType);\r\
-        \n    $.logger.debug(\"counterMap: {}\", counterMap);\r\n}\r\n\r\n// For an\
-        \ easier extension/integration, let's see how you can add/read extra attributes.\r\
-        \nvar fooConnector = $.getAttribute(\"fooMarketingConnector\");\r\nvar account\
-        \ = fooConnector != null ? fooConnector.getAccount() : null;\r\nif (account\
-        \ != null) {\r\n    $.logger.debug(\"Account : \" + account);\r\n}\r\n\r\n\
-        // Leave a log and return the primary goal value, interestType, finally.\r\
-        \n$.logger.debug(\"interestType return: {}\", interestType);\r\nreturn interestType;"
+        \n        if (requestURI.contains(uri)) {\r\n            interestType = type;\r\
+        \n            break;\r\n        }\r\n    }\r\n}\r\n\r\n// If the interestType\
+        \ goal value was determined,\r\n// and if this is invoked in the relevance\
+        \ collector context,\r\n// you can store extra goal data values map ($.collectorContext.extraData)\r\
+        \n// and increment the counter for the goal value to store it back to the\
+        \ targeting data.\r\nif ($.hasCollectorContext()) {\r\n    // Sets the request\
+        \ level goal value before determining the max counter valued type by counterMap.\r\
+        \n    $.collectorContext.setRequestLevelGoalValue(interestType);\r\n    $.logger.debug(\"\
+        requestLevelGoalValue: {}\", interestType);\r\n    // Get the counter map\
+        \ for each interest type goal value.\r\n    var counterMap = $.collectorContext.extraData.get(\"\
+        counterMap\");\r\n    // If the counter map doesn't exist yet, create a new\
+        \ one and put it back to extra data map.\r\n    if (counterMap == null) {\r\
+        \n        counterMap = counter:newMap();\r\n        $.collectorContext.extraData.put(\"\
+        counterMap\", counterMap);\r\n    }\r\n    interestType = counter:incrementAndGetMaxKey(counterMap,\
+        \ interestType);\r\n    $.logger.debug(\"counterMap: {}\", counterMap);\r\n\
+        }\r\n\r\n// For an easier extension/integration, let's see how you can add/read\
+        \ extra attributes.\r\nvar fooConnector = $.getAttribute(\"fooMarketingConnector\"\
+        );\r\nvar account = fooConnector != null ? fooConnector.getAccount() : null;\r\
+        \nif (account != null) {\r\n    $.logger.debug(\"Account : \" + account);\r\
+        \n}\r\n\r\n// Leave a log and return the primary goal value, interestType,\
+        \ finally.\r\n$.logger.debug(\"interestType return: {}\", interestType);\r\
+        \nreturn interestType;"
       inferenceengine:id: rules.demo.visitor.interest.type
       inferenceengine:title: Determine Visitor Interest Type
       /inferenceengine:goalvalue[1]:
@@ -85,7 +85,7 @@
         inferenceengine:value: ['news : /news']
       /inferenceengine:parameter[2]:
         jcr:primaryType: inferenceengine:parameter
-        inferenceengine:name: goal.uri.mapping.1
+        inferenceengine:name: goal.uri.mapping.2
         inferenceengine:value: ['events : /events']
     /determine-visitor-interest-type[2]:
       jcr:primaryType: inferenceengine:rulesdocument
@@ -95,7 +95,7 @@
       hippostd:state: unpublished
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2017-12-04T23:02:45.520+01:00
-      hippostdpubwf:lastModificationDate: 2017-12-04T23:09:28.388+01:00
+      hippostdpubwf:lastModificationDate: 2017-12-04T23:28:32.545+01:00
       hippostdpubwf:lastModifiedBy: admin
       hippotranslation:id: 1d758432-3596-4a70-a70d-b9e492f6848b
       hippotranslation:locale: document-type-locale
@@ -115,28 +115,28 @@
         \ {\r\n    if (paramName.startsWith(\"goal.uri.mapping.\")) {\r\n        var\
         \ paramValue = $.getParameter(paramName);\r\n        var pair = string:split(paramValue,\
         \ \" :\"); var type = arrays:get(pair, 0); var uri = arrays:get(pair, 1);\r\
-        \n        if (requestURI.contains(uri) or referer.contains(uri)) {\r\n   \
-        \         interestType = type;\r\n            break;\r\n        }\r\n    }\r\
-        \n}\r\n\r\n// If the interestType goal value was determined,\r\n// and if\
-        \ this is invoked in the relevance collector context,\r\n// you can store\
-        \ extra goal data values map ($.collectorContext.extraData)\r\n// and increment\
-        \ the counter for the goal value to store it back to the targeting data.\r\
-        \nif ($.hasCollectorContext()) {\r\n    // Sets the request level goal value\
-        \ before determining the max counter valued type by counterMap.\r\n    $.collectorContext.setRequestLevelGoalValue(interestType);\r\
-        \n    $.logger.debug(\"requestLevelGoalValue: {}\", interestType);\r\n   \
-        \ // Get the counter map for each interest type goal value.\r\n    var counterMap\
-        \ = $.collectorContext.extraData.get(\"counterMap\");\r\n    // If the counter\
-        \ map doesn't exist yet, create a new one and put it back to extra data map.\r\
-        \n    if (counterMap == null) {\r\n        counterMap = counter:newMap();\r\
-        \n        $.collectorContext.extraData.put(\"counterMap\", counterMap);\r\n\
-        \    }\r\n    interestType = counter:incrementAndGetMaxKey(counterMap, interestType);\r\
-        \n    $.logger.debug(\"counterMap: {}\", counterMap);\r\n}\r\n\r\n// For an\
-        \ easier extension/integration, let's see how you can add/read extra attributes.\r\
-        \nvar fooConnector = $.getAttribute(\"fooMarketingConnector\");\r\nvar account\
-        \ = fooConnector != null ? fooConnector.getAccount() : null;\r\nif (account\
-        \ != null) {\r\n    $.logger.debug(\"Account : \" + account);\r\n}\r\n\r\n\
-        // Leave a log and return the primary goal value, interestType, finally.\r\
-        \n$.logger.debug(\"interestType return: {}\", interestType);\r\nreturn interestType;"
+        \n        if (requestURI.contains(uri)) {\r\n            interestType = type;\r\
+        \n            break;\r\n        }\r\n    }\r\n}\r\n\r\n// If the interestType\
+        \ goal value was determined,\r\n// and if this is invoked in the relevance\
+        \ collector context,\r\n// you can store extra goal data values map ($.collectorContext.extraData)\r\
+        \n// and increment the counter for the goal value to store it back to the\
+        \ targeting data.\r\nif ($.hasCollectorContext()) {\r\n    // Sets the request\
+        \ level goal value before determining the max counter valued type by counterMap.\r\
+        \n    $.collectorContext.setRequestLevelGoalValue(interestType);\r\n    $.logger.debug(\"\
+        requestLevelGoalValue: {}\", interestType);\r\n    // Get the counter map\
+        \ for each interest type goal value.\r\n    var counterMap = $.collectorContext.extraData.get(\"\
+        counterMap\");\r\n    // If the counter map doesn't exist yet, create a new\
+        \ one and put it back to extra data map.\r\n    if (counterMap == null) {\r\
+        \n        counterMap = counter:newMap();\r\n        $.collectorContext.extraData.put(\"\
+        counterMap\", counterMap);\r\n    }\r\n    interestType = counter:incrementAndGetMaxKey(counterMap,\
+        \ interestType);\r\n    $.logger.debug(\"counterMap: {}\", counterMap);\r\n\
+        }\r\n\r\n// For an easier extension/integration, let's see how you can add/read\
+        \ extra attributes.\r\nvar fooConnector = $.getAttribute(\"fooMarketingConnector\"\
+        );\r\nvar account = fooConnector != null ? fooConnector.getAccount() : null;\r\
+        \nif (account != null) {\r\n    $.logger.debug(\"Account : \" + account);\r\
+        \n}\r\n\r\n// Leave a log and return the primary goal value, interestType,\
+        \ finally.\r\n$.logger.debug(\"interestType return: {}\", interestType);\r\
+        \nreturn interestType;"
       inferenceengine:id: rules.demo.visitor.interest.type
       inferenceengine:title: Determine Visitor Interest Type
       /inferenceengine:goalvalue[1]:
@@ -163,7 +163,7 @@
         inferenceengine:value: ['news : /news']
       /inferenceengine:parameter[2]:
         jcr:primaryType: inferenceengine:parameter
-        inferenceengine:name: goal.uri.mapping.1
+        inferenceengine:name: goal.uri.mapping.2
         inferenceengine:value: ['events : /events']
     /determine-visitor-interest-type[3]:
       jcr:primaryType: inferenceengine:rulesdocument
@@ -173,9 +173,9 @@
       hippostd:state: published
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2017-12-04T23:02:45.520+01:00
-      hippostdpubwf:lastModificationDate: 2017-12-04T23:09:28.388+01:00
+      hippostdpubwf:lastModificationDate: 2017-12-04T23:28:32.545+01:00
       hippostdpubwf:lastModifiedBy: admin
-      hippostdpubwf:publicationDate: 2017-12-04T23:09:30.944+01:00
+      hippostdpubwf:publicationDate: 2017-12-04T23:28:35.573+01:00
       hippotranslation:id: 1d758432-3596-4a70-a70d-b9e492f6848b
       hippotranslation:locale: document-type-locale
       inferenceengine:collector: inferenceRulesDemo
@@ -194,28 +194,28 @@
         \ {\r\n    if (paramName.startsWith(\"goal.uri.mapping.\")) {\r\n        var\
         \ paramValue = $.getParameter(paramName);\r\n        var pair = string:split(paramValue,\
         \ \" :\"); var type = arrays:get(pair, 0); var uri = arrays:get(pair, 1);\r\
-        \n        if (requestURI.contains(uri) or referer.contains(uri)) {\r\n   \
-        \         interestType = type;\r\n            break;\r\n        }\r\n    }\r\
-        \n}\r\n\r\n// If the interestType goal value was determined,\r\n// and if\
-        \ this is invoked in the relevance collector context,\r\n// you can store\
-        \ extra goal data values map ($.collectorContext.extraData)\r\n// and increment\
-        \ the counter for the goal value to store it back to the targeting data.\r\
-        \nif ($.hasCollectorContext()) {\r\n    // Sets the request level goal value\
-        \ before determining the max counter valued type by counterMap.\r\n    $.collectorContext.setRequestLevelGoalValue(interestType);\r\
-        \n    $.logger.debug(\"requestLevelGoalValue: {}\", interestType);\r\n   \
-        \ // Get the counter map for each interest type goal value.\r\n    var counterMap\
-        \ = $.collectorContext.extraData.get(\"counterMap\");\r\n    // If the counter\
-        \ map doesn't exist yet, create a new one and put it back to extra data map.\r\
-        \n    if (counterMap == null) {\r\n        counterMap = counter:newMap();\r\
-        \n        $.collectorContext.extraData.put(\"counterMap\", counterMap);\r\n\
-        \    }\r\n    interestType = counter:incrementAndGetMaxKey(counterMap, interestType);\r\
-        \n    $.logger.debug(\"counterMap: {}\", counterMap);\r\n}\r\n\r\n// For an\
-        \ easier extension/integration, let's see how you can add/read extra attributes.\r\
-        \nvar fooConnector = $.getAttribute(\"fooMarketingConnector\");\r\nvar account\
-        \ = fooConnector != null ? fooConnector.getAccount() : null;\r\nif (account\
-        \ != null) {\r\n    $.logger.debug(\"Account : \" + account);\r\n}\r\n\r\n\
-        // Leave a log and return the primary goal value, interestType, finally.\r\
-        \n$.logger.debug(\"interestType return: {}\", interestType);\r\nreturn interestType;"
+        \n        if (requestURI.contains(uri)) {\r\n            interestType = type;\r\
+        \n            break;\r\n        }\r\n    }\r\n}\r\n\r\n// If the interestType\
+        \ goal value was determined,\r\n// and if this is invoked in the relevance\
+        \ collector context,\r\n// you can store extra goal data values map ($.collectorContext.extraData)\r\
+        \n// and increment the counter for the goal value to store it back to the\
+        \ targeting data.\r\nif ($.hasCollectorContext()) {\r\n    // Sets the request\
+        \ level goal value before determining the max counter valued type by counterMap.\r\
+        \n    $.collectorContext.setRequestLevelGoalValue(interestType);\r\n    $.logger.debug(\"\
+        requestLevelGoalValue: {}\", interestType);\r\n    // Get the counter map\
+        \ for each interest type goal value.\r\n    var counterMap = $.collectorContext.extraData.get(\"\
+        counterMap\");\r\n    // If the counter map doesn't exist yet, create a new\
+        \ one and put it back to extra data map.\r\n    if (counterMap == null) {\r\
+        \n        counterMap = counter:newMap();\r\n        $.collectorContext.extraData.put(\"\
+        counterMap\", counterMap);\r\n    }\r\n    interestType = counter:incrementAndGetMaxKey(counterMap,\
+        \ interestType);\r\n    $.logger.debug(\"counterMap: {}\", counterMap);\r\n\
+        }\r\n\r\n// For an easier extension/integration, let's see how you can add/read\
+        \ extra attributes.\r\nvar fooConnector = $.getAttribute(\"fooMarketingConnector\"\
+        );\r\nvar account = fooConnector != null ? fooConnector.getAccount() : null;\r\
+        \nif (account != null) {\r\n    $.logger.debug(\"Account : \" + account);\r\
+        \n}\r\n\r\n// Leave a log and return the primary goal value, interestType,\
+        \ finally.\r\n$.logger.debug(\"interestType return: {}\", interestType);\r\
+        \nreturn interestType;"
       inferenceengine:id: rules.demo.visitor.interest.type
       inferenceengine:title: Determine Visitor Interest Type
       /inferenceengine:goalvalue[1]:
@@ -242,5 +242,5 @@
         inferenceengine:value: ['news : /news']
       /inferenceengine:parameter[2]:
         jcr:primaryType: inferenceengine:parameter
-        inferenceengine:name: goal.uri.mapping.1
+        inferenceengine:name: goal.uri.mapping.2
         inferenceengine:value: ['events : /events']
