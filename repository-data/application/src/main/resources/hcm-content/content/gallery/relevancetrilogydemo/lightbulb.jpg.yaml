@@ -1,0 +1,27 @@
+/content/gallery/relevancetrilogydemo/lightbulb.jpg:
+  jcr:primaryType: hippo:handle
+  jcr:mixinTypes: ['mix:referenceable']
+  jcr:uuid: 7cab8f3e-a51b-446e-a373-98735fa88272
+  /lightbulb.jpg:
+    jcr:primaryType: hippogallery:imageset
+    hippo:availability: [live, preview]
+    hippogallery:filename: lightbulb.jpg
+    /hippogallery:thumbnail:
+      jcr:primaryType: hippogallery:image
+      hippo:filename: lightbulb.jpg
+      hippogallery:height: 60
+      hippogallery:width: 60
+      jcr:data:
+        type: binary
+        resource: /content/gallery/relevancetrilogydemo/lightbulb.jpg/lightbulb_thumbnail.jpg
+      jcr:lastModified: 2017-12-04T23:05:45.918+01:00
+      jcr:mimeType: image/jpeg
+    /hippogallery:original:
+      jcr:primaryType: hippogallery:image
+      hippogallery:height: 150
+      hippogallery:width: 150
+      jcr:data:
+        type: binary
+        resource: /content/gallery/relevancetrilogydemo/lightbulb.jpg/lightbulb_original.jpg
+      jcr:lastModified: 2017-12-04T23:05:45.918+01:00
+      jcr:mimeType: image/jpeg

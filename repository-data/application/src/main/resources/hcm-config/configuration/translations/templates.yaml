@@ -7,6 +7,7 @@ definitions:
       new-events-document: Neues Event
       new-news-document: Neue News
       new-news-folder: Neuer News-Ordner
+      new-inference-rules: Neuer Inference Rules
     /hippo:configuration/hippo:translations/hippo:templates/en:
       new-resource-bundle: new resource bundle
       new-untranslated-folder: new untranslated folder
@@ -14,6 +15,7 @@ definitions:
       new-events-document: new event
       new-news-document: new news item
       new-news-folder: new news item folder
+      new-inference-rules: new inference rules
     /hippo:configuration/hippo:translations/hippo:templates/fr:
       new-resource-bundle: nouveau resource bundle
       new-untranslated-folder: nouveau dossier non traduit
@@ -21,6 +23,7 @@ definitions:
       new-events-document: nouvel événement
       new-news-document: nouveau message d'info
       new-news-folder: nouveau dossier messages d'info
+      new-inference-rules: nouveau inference rules
     /hippo:configuration/hippo:translations/hippo:templates/nl:
       new-resource-bundle: nieuwe resource bundle
       new-untranslated-folder: nieuwe onvertaalde map
@@ -28,3 +31,8 @@ definitions:
       new-events-document: nieuw evenement
       new-news-document: nieuw nieuwsbericht
       new-news-folder: nieuwe nieuwsmap
+      new-inference-rules: Nieuwe Inference Rules
+    /hippo:configuration/hippo:translations/hippo:templates/es:
+      new-inference-rules: nueva inference rules
+    /hippo:configuration/hippo:translations/hippo:templates/zh:
+      new-inference-rules: New Inference Rules

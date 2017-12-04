@@ -1,0 +1,6 @@
+definitions:
+  config:
+    /targeting:targeting/targeting:characteristics/inferenceRulesDemo:
+      jcr:primaryType: targeting:characteristic
+      targeting:collector: inferenceRulesDemo
+      targeting:scorerClassName: com.onehippo.cms7.inference.engine.datacollector.InferenceRulesScorer

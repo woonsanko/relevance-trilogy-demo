@@ -1,0 +1,246 @@
+/content/documents/administration/inference-rules:
+  jcr:primaryType: hippostd:folder
+  jcr:mixinTypes: ['hippo:named', 'mix:versionable']
+  jcr:uuid: bff0c478-42d4-4390-8e35-d05db0525fca
+  hippo:name: Inference Rules
+  hippostd:foldertype: [new-untranslated-folder, new-inference-rules]
+  /determine-visitor-interest-type:
+    jcr:primaryType: hippo:handle
+    jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+    jcr:uuid: 5a4098ae-b165-42de-934f-c31036404f8b
+    hippo:name: Determine Visitor Interest Type
+    /determine-visitor-interest-type[1]:
+      jcr:primaryType: inferenceengine:rulesdocument
+      jcr:mixinTypes: ['mix:referenceable']
+      jcr:uuid: b351f637-d0e2-4a54-bce3-a8e76d4eb035
+      hippo:availability: []
+      hippostd:state: draft
+      hippostdpubwf:createdBy: admin
+      hippostdpubwf:creationDate: 2017-12-04T23:02:45.520+01:00
+      hippostdpubwf:lastModificationDate: 2017-12-04T23:02:45.521+01:00
+      hippostdpubwf:lastModifiedBy: admin
+      hippotranslation:id: 1d758432-3596-4a70-a70d-b9e492f6848b
+      hippotranslation:locale: document-type-locale
+      inferenceengine:collector: inferenceRulesDemo
+      inferenceengine:description: "Determine Visitor Interest Type based on Request\
+        \ URI pattern.\r\nKeep the counter map for each classification value of content\
+        \ interest types. e.g, 'news', 'events', ...\r\nWhenever a request comes,\
+        \ increment the counter map based on the current  interest type.\r\nAnd, finds\
+        \ the most frequently accessed content interest type as primary targeting\
+        \ goal value."
+      inferenceengine:expression: "// The primary goal data to infer from various\
+        \ inputs.\r\nvar interestType = \"unknown\";\r\n\r\n// Just as an example,\
+        \ input variables here are the current request URI and/or the 'Referer' http\
+        \ header.\r\nvar requestURI = $.request.requestURI;\r\nvar referer = $.request.getHeader(\"\
+        Referer\");\r\n\r\n// If it contains either '/events' or '/news', the goal\
+        \ value is determined accordingly.\r\nfor (var paramName : $.parameterNames)\
+        \ {\r\n    if (paramName.startsWith(\"goal.uri.mapping.\")) {\r\n        var\
+        \ paramValue = $.getParameter(paramName);\r\n        var pair = string:split(paramValue,\
+        \ \" :\"); var type = arrays:get(pair, 0); var uri = arrays:get(pair, 1);\r\
+        \n        if (requestURI.contains(uri) or referer.contains(uri)) {\r\n   \
+        \         interestType = type;\r\n            break;\r\n        }\r\n    }\r\
+        \n}\r\n\r\n// If the interestType goal value was determined,\r\n// and if\
+        \ this is invoked in the relevance collector context,\r\n// you can store\
+        \ extra goal data values map ($.collectorContext.extraData)\r\n// and increment\
+        \ the counter for the goal value to store it back to the targeting data.\r\
+        \nif ($.hasCollectorContext()) {\r\n    // Sets the request level goal value\
+        \ before determining the max counter valued type by counterMap.\r\n    $.collectorContext.setRequestLevelGoalValue(interestType);\r\
+        \n    $.logger.debug(\"requestLevelGoalValue: {}\", interestType);\r\n   \
+        \ // Get the counter map for each interest type goal value.\r\n    var counterMap\
+        \ = $.collectorContext.extraData.get(\"counterMap\");\r\n    // If the counter\
+        \ map doesn't exist yet, create a new one and put it back to extra data map.\r\
+        \n    if (counterMap == null) {\r\n        counterMap = counter:newMap();\r\
+        \n        $.collectorContext.extraData.put(\"counterMap\", counterMap);\r\n\
+        \    }\r\n    interestType = counter:incrementAndGetMaxKey(counterMap, interestType);\r\
+        \n    $.logger.debug(\"counterMap: {}\", counterMap);\r\n}\r\n\r\n// For an\
+        \ easier extension/integration, let's see how you can add/read extra attributes.\r\
+        \nvar fooConnector = $.getAttribute(\"fooMarketingConnector\");\r\nvar account\
+        \ = fooConnector != null ? fooConnector.getAccount() : null;\r\nif (account\
+        \ != null) {\r\n    $.logger.debug(\"Account : \" + account);\r\n}\r\n\r\n\
+        // Leave a log and return the primary goal value, interestType, finally.\r\
+        \n$.logger.debug(\"interestType return: {}\", interestType);\r\nreturn interestType;"
+      inferenceengine:id: rules.demo.visitor.interest.type
+      inferenceengine:title: Determine Visitor Interest Type
+      /inferenceengine:goalvalue[1]:
+        jcr:primaryType: selection:listitem
+        selection:key: news
+        selection:label: News
+      /inferenceengine:icon:
+        jcr:primaryType: hippogallerypicker:imagelink
+        hippo:docbase: 7cab8f3e-a51b-446e-a373-98735fa88272
+        hippo:facets: []
+        hippo:modes: []
+        hippo:values: []
+      /inferenceengine:goalvalue[2]:
+        jcr:primaryType: selection:listitem
+        selection:key: events
+        selection:label: Events
+      /inferenceengine:goalvalue[3]:
+        jcr:primaryType: selection:listitem
+        selection:key: unknown
+        selection:label: Unknown
+      /inferenceengine:parameter[1]:
+        jcr:primaryType: inferenceengine:parameter
+        inferenceengine:name: goal.uri.mapping.1
+        inferenceengine:value: ['news : /news']
+      /inferenceengine:parameter[2]:
+        jcr:primaryType: inferenceengine:parameter
+        inferenceengine:name: goal.uri.mapping.1
+        inferenceengine:value: ['events : /events']
+    /determine-visitor-interest-type[2]:
+      jcr:primaryType: inferenceengine:rulesdocument
+      jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+      jcr:uuid: 65901ae5-aa77-4f3f-9a41-0e169e717e8f
+      hippo:availability: [preview]
+      hippostd:state: unpublished
+      hippostdpubwf:createdBy: admin
+      hippostdpubwf:creationDate: 2017-12-04T23:02:45.520+01:00
+      hippostdpubwf:lastModificationDate: 2017-12-04T23:09:28.388+01:00
+      hippostdpubwf:lastModifiedBy: admin
+      hippotranslation:id: 1d758432-3596-4a70-a70d-b9e492f6848b
+      hippotranslation:locale: document-type-locale
+      inferenceengine:collector: inferenceRulesDemo
+      inferenceengine:description: "Determine Visitor Interest Type based on Request\
+        \ URI pattern.\r\nKeep the counter map for each classification value of content\
+        \ interest types. e.g, 'news', 'events', ...\r\nWhenever a request comes,\
+        \ increment the counter map based on the current  interest type.\r\nAnd, finds\
+        \ the most frequently accessed content interest type as primary targeting\
+        \ goal value."
+      inferenceengine:expression: "// The primary goal data to infer from various\
+        \ inputs.\r\nvar interestType = \"unknown\";\r\n\r\n// Just as an example,\
+        \ input variables here are the current request URI and/or the 'Referer' http\
+        \ header.\r\nvar requestURI = $.request.requestURI;\r\nvar referer = $.request.getHeader(\"\
+        Referer\");\r\n\r\n// If it contains either '/events' or '/news', the goal\
+        \ value is determined accordingly.\r\nfor (var paramName : $.parameterNames)\
+        \ {\r\n    if (paramName.startsWith(\"goal.uri.mapping.\")) {\r\n        var\
+        \ paramValue = $.getParameter(paramName);\r\n        var pair = string:split(paramValue,\
+        \ \" :\"); var type = arrays:get(pair, 0); var uri = arrays:get(pair, 1);\r\
+        \n        if (requestURI.contains(uri) or referer.contains(uri)) {\r\n   \
+        \         interestType = type;\r\n            break;\r\n        }\r\n    }\r\
+        \n}\r\n\r\n// If the interestType goal value was determined,\r\n// and if\
+        \ this is invoked in the relevance collector context,\r\n// you can store\
+        \ extra goal data values map ($.collectorContext.extraData)\r\n// and increment\
+        \ the counter for the goal value to store it back to the targeting data.\r\
+        \nif ($.hasCollectorContext()) {\r\n    // Sets the request level goal value\
+        \ before determining the max counter valued type by counterMap.\r\n    $.collectorContext.setRequestLevelGoalValue(interestType);\r\
+        \n    $.logger.debug(\"requestLevelGoalValue: {}\", interestType);\r\n   \
+        \ // Get the counter map for each interest type goal value.\r\n    var counterMap\
+        \ = $.collectorContext.extraData.get(\"counterMap\");\r\n    // If the counter\
+        \ map doesn't exist yet, create a new one and put it back to extra data map.\r\
+        \n    if (counterMap == null) {\r\n        counterMap = counter:newMap();\r\
+        \n        $.collectorContext.extraData.put(\"counterMap\", counterMap);\r\n\
+        \    }\r\n    interestType = counter:incrementAndGetMaxKey(counterMap, interestType);\r\
+        \n    $.logger.debug(\"counterMap: {}\", counterMap);\r\n}\r\n\r\n// For an\
+        \ easier extension/integration, let's see how you can add/read extra attributes.\r\
+        \nvar fooConnector = $.getAttribute(\"fooMarketingConnector\");\r\nvar account\
+        \ = fooConnector != null ? fooConnector.getAccount() : null;\r\nif (account\
+        \ != null) {\r\n    $.logger.debug(\"Account : \" + account);\r\n}\r\n\r\n\
+        // Leave a log and return the primary goal value, interestType, finally.\r\
+        \n$.logger.debug(\"interestType return: {}\", interestType);\r\nreturn interestType;"
+      inferenceengine:id: rules.demo.visitor.interest.type
+      inferenceengine:title: Determine Visitor Interest Type
+      /inferenceengine:goalvalue[1]:
+        jcr:primaryType: selection:listitem
+        selection:key: news
+        selection:label: News
+      /inferenceengine:icon:
+        jcr:primaryType: hippogallerypicker:imagelink
+        hippo:docbase: 7cab8f3e-a51b-446e-a373-98735fa88272
+        hippo:facets: []
+        hippo:modes: []
+        hippo:values: []
+      /inferenceengine:goalvalue[2]:
+        jcr:primaryType: selection:listitem
+        selection:key: events
+        selection:label: Events
+      /inferenceengine:goalvalue[3]:
+        jcr:primaryType: selection:listitem
+        selection:key: unknown
+        selection:label: Unknown
+      /inferenceengine:parameter[1]:
+        jcr:primaryType: inferenceengine:parameter
+        inferenceengine:name: goal.uri.mapping.1
+        inferenceengine:value: ['news : /news']
+      /inferenceengine:parameter[2]:
+        jcr:primaryType: inferenceengine:parameter
+        inferenceengine:name: goal.uri.mapping.1
+        inferenceengine:value: ['events : /events']
+    /determine-visitor-interest-type[3]:
+      jcr:primaryType: inferenceengine:rulesdocument
+      jcr:mixinTypes: ['mix:referenceable']
+      jcr:uuid: fb348b0b-07b4-4c12-b162-fb7704582000
+      hippo:availability: [live]
+      hippostd:state: published
+      hippostdpubwf:createdBy: admin
+      hippostdpubwf:creationDate: 2017-12-04T23:02:45.520+01:00
+      hippostdpubwf:lastModificationDate: 2017-12-04T23:09:28.388+01:00
+      hippostdpubwf:lastModifiedBy: admin
+      hippostdpubwf:publicationDate: 2017-12-04T23:09:30.944+01:00
+      hippotranslation:id: 1d758432-3596-4a70-a70d-b9e492f6848b
+      hippotranslation:locale: document-type-locale
+      inferenceengine:collector: inferenceRulesDemo
+      inferenceengine:description: "Determine Visitor Interest Type based on Request\
+        \ URI pattern.\r\nKeep the counter map for each classification value of content\
+        \ interest types. e.g, 'news', 'events', ...\r\nWhenever a request comes,\
+        \ increment the counter map based on the current  interest type.\r\nAnd, finds\
+        \ the most frequently accessed content interest type as primary targeting\
+        \ goal value."
+      inferenceengine:expression: "// The primary goal data to infer from various\
+        \ inputs.\r\nvar interestType = \"unknown\";\r\n\r\n// Just as an example,\
+        \ input variables here are the current request URI and/or the 'Referer' http\
+        \ header.\r\nvar requestURI = $.request.requestURI;\r\nvar referer = $.request.getHeader(\"\
+        Referer\");\r\n\r\n// If it contains either '/events' or '/news', the goal\
+        \ value is determined accordingly.\r\nfor (var paramName : $.parameterNames)\
+        \ {\r\n    if (paramName.startsWith(\"goal.uri.mapping.\")) {\r\n        var\
+        \ paramValue = $.getParameter(paramName);\r\n        var pair = string:split(paramValue,\
+        \ \" :\"); var type = arrays:get(pair, 0); var uri = arrays:get(pair, 1);\r\
+        \n        if (requestURI.contains(uri) or referer.contains(uri)) {\r\n   \
+        \         interestType = type;\r\n            break;\r\n        }\r\n    }\r\
+        \n}\r\n\r\n// If the interestType goal value was determined,\r\n// and if\
+        \ this is invoked in the relevance collector context,\r\n// you can store\
+        \ extra goal data values map ($.collectorContext.extraData)\r\n// and increment\
+        \ the counter for the goal value to store it back to the targeting data.\r\
+        \nif ($.hasCollectorContext()) {\r\n    // Sets the request level goal value\
+        \ before determining the max counter valued type by counterMap.\r\n    $.collectorContext.setRequestLevelGoalValue(interestType);\r\
+        \n    $.logger.debug(\"requestLevelGoalValue: {}\", interestType);\r\n   \
+        \ // Get the counter map for each interest type goal value.\r\n    var counterMap\
+        \ = $.collectorContext.extraData.get(\"counterMap\");\r\n    // If the counter\
+        \ map doesn't exist yet, create a new one and put it back to extra data map.\r\
+        \n    if (counterMap == null) {\r\n        counterMap = counter:newMap();\r\
+        \n        $.collectorContext.extraData.put(\"counterMap\", counterMap);\r\n\
+        \    }\r\n    interestType = counter:incrementAndGetMaxKey(counterMap, interestType);\r\
+        \n    $.logger.debug(\"counterMap: {}\", counterMap);\r\n}\r\n\r\n// For an\
+        \ easier extension/integration, let's see how you can add/read extra attributes.\r\
+        \nvar fooConnector = $.getAttribute(\"fooMarketingConnector\");\r\nvar account\
+        \ = fooConnector != null ? fooConnector.getAccount() : null;\r\nif (account\
+        \ != null) {\r\n    $.logger.debug(\"Account : \" + account);\r\n}\r\n\r\n\
+        // Leave a log and return the primary goal value, interestType, finally.\r\
+        \n$.logger.debug(\"interestType return: {}\", interestType);\r\nreturn interestType;"
+      inferenceengine:id: rules.demo.visitor.interest.type
+      inferenceengine:title: Determine Visitor Interest Type
+      /inferenceengine:goalvalue[1]:
+        jcr:primaryType: selection:listitem
+        selection:key: news
+        selection:label: News
+      /inferenceengine:icon:
+        jcr:primaryType: hippogallerypicker:imagelink
+        hippo:docbase: 7cab8f3e-a51b-446e-a373-98735fa88272
+        hippo:facets: []
+        hippo:modes: []
+        hippo:values: []
+      /inferenceengine:goalvalue[2]:
+        jcr:primaryType: selection:listitem
+        selection:key: events
+        selection:label: Events
+      /inferenceengine:goalvalue[3]:
+        jcr:primaryType: selection:listitem
+        selection:key: unknown
+        selection:label: Unknown
+      /inferenceengine:parameter[1]:
+        jcr:primaryType: inferenceengine:parameter
+        inferenceengine:name: goal.uri.mapping.1
+        inferenceengine:value: ['news : /news']
+      /inferenceengine:parameter[2]:
+        jcr:primaryType: inferenceengine:parameter
+        inferenceengine:name: goal.uri.mapping.1
+        inferenceengine:value: ['events : /events']

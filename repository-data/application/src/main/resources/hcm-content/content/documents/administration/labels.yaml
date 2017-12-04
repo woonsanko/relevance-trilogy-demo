@@ -1,4 +1,5 @@
 /content/documents/administration/labels:
+  .meta:order-before: inference-rules
   jcr:primaryType: hippostd:folder
   jcr:mixinTypes: ['mix:referenceable']
   jcr:uuid: 6b669ecb-7202-4378-8cfd-73a603e9f490

@@ -1,4 +1,5 @@
 /content/gallery/relevancetrilogydemo/samples:
+  .meta:order-before: lightbulb.jpg
   jcr:primaryType: hippogallery:stdImageGallery
   jcr:mixinTypes: ['mix:referenceable']
   jcr:uuid: a9e23ac5-cfa4-45d2-b1d7-62cbc7399283

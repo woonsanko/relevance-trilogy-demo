@@ -1,0 +1,15 @@
+definitions:
+  config:
+    /hippo:configuration/hippo:frontend/cms/hippo-targeting/collector-inferenceRulesDemo:
+      .meta:order-before: characteristic-inferenceRulesDemo
+      jcr:primaryType: frontend:plugin
+      characteristic: inferenceRulesDemo
+      collector: inferenceRulesDemo
+      plugin.class: com.onehippo.cms7.inference.engine.collectorplugin.InferenceRulesCollectorPlugin
+      visitor.characteristic.visible: true
+    /hippo:configuration/hippo:frontend/cms/hippo-targeting/characteristic-inferenceRulesDemo:
+      jcr:primaryType: frontend:plugin
+      characteristic: inferenceRulesDemo
+      collector: inferenceRulesDemo
+      plugin.class: com.onehippo.cms7.inference.engine.collectorplugin.InferenceRulesCharacteristicPlugin
+      visitor.characteristic.visible: true
