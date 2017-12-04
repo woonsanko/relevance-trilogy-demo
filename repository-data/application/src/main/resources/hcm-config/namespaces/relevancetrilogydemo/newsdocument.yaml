@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['hipposysedit:remodel', 'mix:referenceable']
-          jcr:uuid: 23ae0c23-0bb0-49f3-9499-f9638f337858
+          jcr:uuid: 98ea8186-83a3-4ae5-9bb7-d631d45a38f2
           hipposysedit:node: true
           hipposysedit:supertype: ['relevancetrilogydemo:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -81,12 +81,20 @@ definitions:
             hipposysedit:path: relevancetrilogydemo:location
             hipposysedit:primary: false
             hipposysedit:type: String
+          /tags:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: true
+            hipposysedit:ordered: false
+            hipposysedit:path: relevancetrilogydemo:tags
+            hipposysedit:primary: false
+            hipposysedit:type: String
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
           jcr:primaryType: relevancetrilogydemo:newsdocument
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 475bd995-10a4-421b-9b1e-428a4e95f754
+          jcr:uuid: faff9dea-2d40-4560-9002-b6d2bf06397e
           hippo:related___pathreference: []
           hippostd:holder: holder
           hippostd:state: draft
@@ -100,9 +108,13 @@ definitions:
           relevancetrilogydemo:documenttype: news
           relevancetrilogydemo:introduction: ''
           relevancetrilogydemo:title: ''
+          relevancetrilogydemo:author: ''
+          relevancetrilogydemo:source: ''
+          relevancetrilogydemo:location: ''
+          relevancetrilogydemo:tags: ['']
           /relevancetrilogydemo:content:
             jcr:primaryType: hippostd:html
-            hippostd:content: <html><body></body></html>
+            hippostd:content: ''
           /relevancetrilogydemo:image:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
@@ -157,6 +169,15 @@ definitions:
           /date:
             jcr:primaryType: frontend:plugin
             field: date
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.right.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+          /tags:
+            jcr:primaryType: frontend:plugin
+            caption: Tags
+            field: tags
+            hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.right.item
             /cluster.options:

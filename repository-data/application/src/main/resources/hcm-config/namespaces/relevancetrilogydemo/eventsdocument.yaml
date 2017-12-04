@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['hipposysedit:remodel', 'mix:referenceable']
-          jcr:uuid: c5299758-3586-4021-862a-4becdecbc619
+          jcr:uuid: 31cb4704-a332-4daa-81c8-52bbc7f8683b
           hipposysedit:node: true
           hipposysedit:supertype: ['relevancetrilogydemo:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -72,12 +72,20 @@ definitions:
             hipposysedit:path: relevancetrilogydemo:location
             hipposysedit:primary: false
             hipposysedit:type: String
+          /tags:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: true
+            hipposysedit:ordered: false
+            hipposysedit:path: relevancetrilogydemo:tags
+            hipposysedit:primary: false
+            hipposysedit:type: String
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
           jcr:primaryType: relevancetrilogydemo:eventsdocument
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 9d9afdd8-7b07-4b48-bf8c-b82f9a45e73a
+          jcr:uuid: 0e7e1705-c26e-4ffc-9032-32c866f015cf
           hippo:related___pathreference: []
           hippostd:holder: holder
           hippostd:state: draft
@@ -92,9 +100,11 @@ definitions:
           relevancetrilogydemo:enddate: 0001-01-01T13:00:00+01:00
           relevancetrilogydemo:introduction: ''
           relevancetrilogydemo:title: ''
+          relevancetrilogydemo:location: ''
+          relevancetrilogydemo:tags: ['']
           /relevancetrilogydemo:content:
             jcr:primaryType: hippostd:html
-            hippostd:content: <html><body></body></html>
+            hippostd:content: ''
           /relevancetrilogydemo:image:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
@@ -156,6 +166,15 @@ definitions:
           /enddate:
             jcr:primaryType: frontend:plugin
             field: enddate
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.right.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+          /tags:
+            jcr:primaryType: frontend:plugin
+            caption: Tags
+            field: tags
+            hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.right.item
             /cluster.options:
