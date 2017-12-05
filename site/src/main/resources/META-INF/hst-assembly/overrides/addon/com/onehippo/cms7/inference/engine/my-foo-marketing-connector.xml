@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright 2017 Hippo B.V. (http://www.onehippo.com)
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+       http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.1.xsd">
+
+  <!--
+    For security reason, you must explicitly add any custom class types here to use in expressions.
+  -->
+  <bean id="inferenceEngineWhiteSet"
+        class="org.springframework.beans.factory.config.ListFactoryBean">
+    <property name="sourceList">
+      <list>
+        <value>org.example.relevance.trilogy.demo.integration.FooMarketingAccount</value>
+        <value>org.example.relevance.trilogy.demo.integration.FooMarketingConnector</value>
+      </list>
+    </property>
+  </bean>
+
+  <!--
+    You can add any custom attributes as name vs. object pairs below.
+    You can access an attribute like '$.getAttribute("fooMarketingConnector").getAccount();', for instance.
+  -->
+  <bean id="inferenceEngineGenericBuiltinModelExtraAttributes"
+        class="org.springframework.beans.factory.config.MapFactoryBean">
+    <property name="sourceMap">
+      <map>
+        <entry key="fooMarketingConnector">
+          <ref bean="fooMarketingConnector" />
+        </entry>
+      </map>
+    </property>
+  </bean>
+
+  <bean id="fooMarketingConnector" class="org.example.relevance.trilogy.demo.integration.FooMarketingConnector">
+    <property name="server" ref="fooMarketingServer" />
+  </bean>
+
+  <bean id="fooMarketingServer" class="org.example.relevance.trilogy.demo.integration.FooMarketingServer">
+    <property name="accountMap">
+      <map>
+        <entry key="john.doe@example.com">
+          <bean class="org.example.relevance.trilogy.demo.integration.FooMarketingAccount">
+            <property name="name" value="John Doe" />
+            <property name="email" value="john.doe@example.com" />
+            <property name="age" value="33" />
+          </bean>
+        </entry>
+        <entry key="jane.doe@example.com">
+          <bean class="org.example.relevance.trilogy.demo.integration.FooMarketingAccount">
+            <property name="name" value="Jane Doe" />
+            <property name="email" value="jane.doe@example.com" />
+            <property name="age" value="30" />
+          </bean>
+        </entry>
+      </map>
+    </property>
+  </bean>
+
+</beans>
