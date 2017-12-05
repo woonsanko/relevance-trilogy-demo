@@ -4,3 +4,7 @@ definitions:
       jcr:primaryType: targeting:characteristic
       targeting:collector: inferenceRulesDemo
       targeting:scorerClassName: com.onehippo.cms7.inference.engine.datacollector.InferenceRulesScorer
+      /eventslover-1512436111535:
+        jcr:primaryType: targeting:targetgroup
+        targeting:name: Events Lover
+        targeting:propertynames: [events]
