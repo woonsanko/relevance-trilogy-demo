@@ -74,7 +74,7 @@
     <elasticsearch.version>5.4.1</elasticsearch.version>
     <maven.plugin.elasticsearch.version>5.7</maven.plugin.elasticsearch.version>
 
-    <essentials.version>4.1.0-SNAPSHOT</essentials.version>
+    <essentials.version>4.1.0</essentials.version>
     <jsp-api.version>2.2</jsp-api.version>
     <taglibs.version>1.2.5</taglibs.version>
     <xalan.version>2.7.2</xalan.version>
