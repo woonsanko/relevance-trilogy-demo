@@ -6,6 +6,7 @@
 <article class="has-edit-button">
     <@hst.cmseditlink hippobean=document/>
     <h3><a href="${link}">${document.title?html}</a></h3>
+    <div><span class="badge">${document.tagsCSV!}</span></div>
     <#if document.date??>
         <p><@fmt.formatDate value=document.date.time type="both" dateStyle="medium" timeStyle="short"/></p>
     </#if>

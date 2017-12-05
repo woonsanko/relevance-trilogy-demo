@@ -1,6 +1,8 @@
 package org.example.relevance.trilogy.demo.beans;
 
 import java.util.Calendar;
+
+import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoDocument;
 import org.hippoecm.hst.content.beans.standard.HippoGalleryImageSet;
@@ -101,5 +103,10 @@ public class EventsDocument extends HippoDocument {
     @HippoEssentialsGenerated(internalName = "relevancetrilogydemo:enddate")
     public Calendar getEndDate() {
         return getProperty(END_DATE);
+    }
+
+    @XmlElement
+    public String getTagsCSV() {
+        return StringUtils.join((String []) getProperty("relevancetrilogydemo:tags"), ",");
     }
 }

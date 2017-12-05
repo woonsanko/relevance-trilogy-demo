@@ -1,6 +1,8 @@
 package org.example.relevance.trilogy.demo.beans;
 
 import java.util.Calendar;
+
+import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoDocument;
 import org.hippoecm.hst.content.beans.standard.HippoGalleryImageSet;
@@ -112,5 +114,10 @@ public class NewsDocument extends HippoDocument {
     @HippoEssentialsGenerated(internalName = "relevancetrilogydemo:source")
     public String getSource() {
         return getProperty(SOURCE);
+    }
+
+    @XmlElement
+    public String getTagsCSV() {
+        return StringUtils.join((String []) getProperty("relevancetrilogydemo:tags"), ",");
     }
 }
