@@ -69,6 +69,8 @@
     <webjars-servlet-2.x.version>1.5</webjars-servlet-2.x.version>
     <webjars-swagger-ui.version>2.2.8</webjars-swagger-ui.version>
 
+    <hippo-addon-generic-resource-entity-builder.version>1.0.1</hippo-addon-generic-resource-entity-builder.version>
+
     <elasticsearch.version>5.4.1</elasticsearch.version>
     <maven.plugin.elasticsearch.version>5.7</maven.plugin.elasticsearch.version>
 
@@ -156,6 +158,12 @@
         <groupId>com.onehippo.cms7</groupId>
         <artifactId>hippo-addon-api-agent-channel-repository</artifactId>
         <version>${hippo-addon-api-agent-channel.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.onehippo.cms7</groupId>
+        <artifactId>hippo-addon-generic-resource-entity-builder</artifactId>
+        <version>${hippo-addon-generic-resource-entity-builder.version}</version>
       </dependency>
 
       <dependency>

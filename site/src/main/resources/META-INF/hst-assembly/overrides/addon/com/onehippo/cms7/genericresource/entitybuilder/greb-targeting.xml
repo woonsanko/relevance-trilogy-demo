@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
+
+  <bean class="org.hippoecm.hst.site.container.TypeDeterminedMethodInvokingFactoryBean">
+    <constructor-arg value="java.lang.Void" />
+    <property name="targetObject">
+      <bean class="org.hippoecm.hst.site.container.TypeDeterminedMethodInvokingFactoryBean">
+        <constructor-arg value="org.hippoecm.hst.core.container.Pipeline" />
+        <property name="targetObject" ref="org.hippoecm.hst.core.container.Pipelines" />
+        <property name="targetMethod" value="getPipeline" />
+        <property name="arguments">
+          <list>
+            <value>GenericResourceEntitySitePipeline</value>
+          </list>
+        </property>
+      </bean>
+    </property>
+    <property name="targetMethod" value="addProcessingValve" />
+    <property name="arguments">
+      <list>
+        <bean class="com.onehippo.cms7.targeting.hst.container.TargetingUpdateValve">
+          <property name="valveName" value="targetingUpdateValve" />
+          <property name="afterValves" value="contextResolvingValve, localizationValve" />
+          <property name="beforeValves" value="actionValve, resourceServingValve" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+
+</beans>

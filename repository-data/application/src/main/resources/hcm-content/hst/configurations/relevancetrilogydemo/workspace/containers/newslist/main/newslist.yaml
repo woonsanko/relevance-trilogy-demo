@@ -1,6 +1,6 @@
 /hst:hst/hst:configurations/relevancetrilogydemo/hst:workspace/hst:containers/newslist/main/newslist:
   jcr:primaryType: hst:containeritemcomponent
-  hst:componentclassname: org.onehippo.cms7.essentials.components.EssentialsNewsComponent
+  hst:componentclassname: org.example.relevance.trilogy.demo.components.DemoEssentialsNewsComponent
   hst:label: News List
   hst:parameternames: [hidePastEvents, documentTypes, sortField, sortOrder, includeSubtypes,
     showPagination, path, pageSize, documentDateField, hideFutureItems]
