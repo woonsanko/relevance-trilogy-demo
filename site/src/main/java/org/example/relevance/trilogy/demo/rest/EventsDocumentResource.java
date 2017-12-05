@@ -59,7 +59,9 @@ public class EventsDocumentResource extends BaseRestResource {
             if (tags != null && tags.length > 0) {
                 Filter filter = hstQuery.createFilter();
                 for (String tag : tags) {
-                    filter.addContains("relevancetrilogydemo:tags", tag);
+                    Filter orFilter = hstQuery.createFilter();
+                    orFilter.addContains("relevancetrilogydemo:tags", tag);
+                    filter.addOrFilter(orFilter);
                 }
                 hstQuery.setFilter(filter);
             }
